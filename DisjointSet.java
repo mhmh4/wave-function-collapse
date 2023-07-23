@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class DisjointSet {
     private final int[] id;
 
@@ -22,4 +24,10 @@ public class DisjointSet {
         }
     }
 
+    @Override
+    public String toString() {
+        return "DisjointSet{" +
+                "id=" + Arrays.toString(id) +
+                '}';
+    }
 }
