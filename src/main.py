@@ -1,9 +1,14 @@
 import pyray
 
-BLANK, UP, RIGHT, DOWN, LEFT = range(5)
+# this number is determined by each tile image's dimensions
+IMAGE_SIZE = 30
 
-WIDTH = 800
-HEIGHT = 450
+N = 30
+
+WIDTH = N * IMAGE_SIZE
+HEIGHT = N * IMAGE_SIZE
+
+BLANK, UP, RIGHT, DOWN, LEFT = range(5)
 
 pyray.init_window(WIDTH, HEIGHT, "")
 
@@ -18,7 +23,6 @@ tiles = [
     )
 ]
 
-N = 4
 
 grid = [
     [
