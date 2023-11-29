@@ -7,11 +7,16 @@ HEIGHT = 450
 
 pyray.init_window(WIDTH, HEIGHT, "")
 
-blank = pyray.load_texture_from_image(pyray.load_image("./tiles/blank.png"))
-up = pyray.load_texture_from_image(pyray.load_image("./tiles/up.png"))
-right = pyray.load_texture_from_image(pyray.load_image("./tiles/right.png"))
-down = pyray.load_texture_from_image(pyray.load_image("./tiles/down.png"))
-left = pyray.load_texture_from_image(pyray.load_image("./tiles/left.png"))
+tiles = [
+    pyray.load_texture_from_image(pyray.load_image(f))
+    for f in (
+        "./tiles/blank.png",
+        "./tiles/up.png",
+        "./tiles/right.png",
+        "./tiles/down.png",
+        "./tiles/left.png",
+    )
+]
 
 N = 4
 
