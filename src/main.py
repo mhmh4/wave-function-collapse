@@ -59,6 +59,19 @@ grid = [
 while not pyray.window_should_close():
     pyray.begin_drawing()
 
+    w = WIDTH // N
+    h = HEIGHT // N
+    for j in range(N):
+        for i in range(N):
+            cell = grid[i][j]
+            if cell["collapsed"] == True:
+                index = cell["options"][0]
+                pyray.draw_texture(tiles[index], i * w, j * h, pyray.WHITE)
+            else:
+                pyray.draw_rectangle(i * w, j * h, w, h, pyray.BLUE)
+
+    pyray.end_drawing()
+
     clone = list(
         sorted(
             list(itertools.chain.from_iterable(grid)),
@@ -74,16 +87,5 @@ while not pyray.window_should_close():
     cell["collapsed"] = True
     cell["options"] = [random.choice(cell["options"])]
 
-    w = WIDTH // N
-    h = HEIGHT // N
-    for j in range(N):
-        for i in range(N):
-            cell = grid[i][j]
-            if cell["collapsed"] == True:
-                index = cell["options"][0]
-                pyray.draw_texture(tiles[index], i * w, j * h, pyray.WHITE)
-            else:
-                pyray.draw_rectangle(i * w, j * h, w, h, pyray.BLUE)
-    pyray.end_drawing()
 
 pyray.close_window()
