@@ -1,3 +1,5 @@
+import itertools
+
 import pyray
 
 # this number is determined by each tile image's dimensions
@@ -46,6 +48,18 @@ grid[0][0]["options"] = [RIGHT]
 
 while not pyray.window_should_close():
     pyray.begin_drawing()
+
+    clone = list(
+        sorted(
+            list(itertools.chain.from_iterable(grid)),
+            key=lambda cell: len(cell["options"]),
+        )
+    )
+
+    candidates = list(
+        filter(lambda cell: len(cell["options"]) == len(clone[0]["options"]), clone)
+    )
+
     w = WIDTH // N
     h = HEIGHT // N
     for j in range(N):
