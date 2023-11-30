@@ -1,4 +1,5 @@
 import itertools
+import random
 
 import pyray
 
@@ -41,10 +42,6 @@ grid = [
     ]
     for _ in range(N)
 ]
-# print(grid)
-
-grid[0][0]["collapsed"] = True
-grid[0][0]["options"] = [RIGHT]
 
 while not pyray.window_should_close():
     pyray.begin_drawing()
@@ -59,6 +56,10 @@ while not pyray.window_should_close():
     candidates = list(
         filter(lambda cell: len(cell["options"]) == len(clone[0]["options"]), clone)
     )
+
+    cell = random.choice(candidates)
+    cell["collapsed"] = True
+    cell["options"] = [random.choice(cell["options"])]
 
     w = WIDTH // N
     h = HEIGHT // N
