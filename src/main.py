@@ -60,21 +60,19 @@ tiles = [
 ]
 
 grid = [
-    [
-        {
-            "collapsed": False,
-            "options": [
-                BLANK,
-                UP,
-                RIGHT,
-                DOWN,
-                LEFT,
-            ],
-        }
-        for _ in range(N)
-    ]
-    for _ in range(N)
+    {
+        "collapsed": False,
+        "options": [
+            BLANK,
+            UP,
+            RIGHT,
+            DOWN,
+            LEFT,
+        ],
+    }
+    for _ in range(N * N)
 ]
+
 
 while not pyray.window_should_close():
     pyray.begin_drawing()
@@ -83,7 +81,7 @@ while not pyray.window_should_close():
     h = HEIGHT // N
     for j in range(N):
         for i in range(N):
-            cell = grid[i][j]
+            cell = grid[i + j * N]
             if cell["collapsed"] == True:
                 index = cell["options"][0]
                 pyray.draw_texture(tiles[index], i * w, j * h, pyray.WHITE)
@@ -92,20 +90,20 @@ while not pyray.window_should_close():
 
     pyray.end_drawing()
 
-    clone = list(
-        sorted(
-            list(itertools.chain.from_iterable(grid)),
-            key=lambda cell: len(cell["options"]),
-        )
-    )
+    # clone = list(
+    #     sorted(
+    #         list(itertools.chain.from_iterable(grid)),
+    #         key=lambda cell: len(cell["options"]),
+    #     )
+    # )
 
-    candidates = list(
-        filter(lambda cell: len(cell["options"]) == len(clone[0]["options"]), clone)
-    )
+    # candidates = list(
+    #     filter(lambda cell: len(cell["options"]) == len(clone[0]["options"]), clone)
+    # )
 
-    cell = random.choice(candidates)
-    cell["collapsed"] = True
-    cell["options"] = [random.choice(cell["options"])]
+    # cell = random.choice(candidates)
+    # cell["collapsed"] = True
+    # cell["options"] = [random.choice(cell["options"])]
 
 
 pyray.close_window()
