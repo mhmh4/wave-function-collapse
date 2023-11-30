@@ -20,10 +20,30 @@ RULES = [
         [BLANK, DOWN],
         [BLANK, LEFT],
     ],
-    [[RIGHT, LEFT, DOWN], [LEFT, UP, DOWN], [BLANK, DOWN], [RIGHT, UP, DOWN]],
-    [[RIGHT, LEFT, DOWN], [LEFT, UP, DOWN], [RIGHT, LEFT, UP], [BLANK, LEFT]],
-    [[BLANK, UP], [LEFT, UP, DOWN], [RIGHT, LEFT, UP], [RIGHT, UP, DOWN]],
-    [[RIGHT, LEFT, DOWN], [BLANK, RIGHT], [RIGHT, LEFT, UP], [UP, DOWN, RIGHT]],
+    [
+        [RIGHT, LEFT, DOWN],
+        [LEFT, UP, DOWN],
+        [BLANK, DOWN],
+        [RIGHT, UP, DOWN],
+    ],
+    [
+        [RIGHT, LEFT, DOWN],
+        [LEFT, UP, DOWN],
+        [RIGHT, LEFT, UP],
+        [BLANK, LEFT],
+    ],
+    [
+        [BLANK, UP],
+        [LEFT, UP, DOWN],
+        [RIGHT, LEFT, UP],
+        [RIGHT, UP, DOWN],
+    ],
+    [
+        [RIGHT, LEFT, DOWN],
+        [BLANK, RIGHT],
+        [RIGHT, LEFT, UP],
+        [UP, DOWN, RIGHT],
+    ],
 ]
 
 pyray.init_window(WIDTH, HEIGHT, "")
