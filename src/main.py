@@ -90,20 +90,20 @@ while not pyray.window_should_close():
 
     pyray.end_drawing()
 
-    # clone = list(
-    #     sorted(
-    #         list(itertools.chain.from_iterable(grid)),
-    #         key=lambda cell: len(cell["options"]),
-    #     )
-    # )
+    clone = grid.copy()
 
-    # candidates = list(
-    #     filter(lambda cell: len(cell["options"]) == len(clone[0]["options"]), clone)
-    # )
+    clone = filter(lambda cell: not cell["collapsed"], clone)
+    clone = list(sorted(clone, key=lambda cell: len(cell["options"])))
+    candidates = list(
+        filter(
+            lambda cell: len(cell["options"]) == len(clone[0]["options"]),
+            clone,
+        )
+    )
 
-    # cell = random.choice(candidates)
-    # cell["collapsed"] = True
-    # cell["options"] = [random.choice(cell["options"])]
+    cell = random.choice(candidates)
+    cell["collapsed"] = True
+    cell["options"] = [random.choice(cell["options"])]
 
 
 pyray.close_window()
