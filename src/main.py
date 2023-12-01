@@ -73,6 +73,7 @@ grid = [
     for _ in range(N * N)
 ]
 
+done = False
 
 while not pyray.window_should_close():
     pyray.begin_drawing()
@@ -90,6 +91,9 @@ while not pyray.window_should_close():
 
     pyray.end_drawing()
 
+    if done:
+        continue
+
     clone = grid.copy()
 
     clone = filter(lambda cell: not cell["collapsed"], clone)
@@ -100,6 +104,11 @@ while not pyray.window_should_close():
             clone,
         )
     )
+
+    if not candidates:
+        # all cells are collapsed
+        done = True
+        continue
 
     cell = random.choice(candidates)
     cell["collapsed"] = True
