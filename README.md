@@ -1,6 +1,6 @@
 # wave-function-collapse
 
-<img src="./screenshot.png">
+<img width="25%" src="./screenshot.png">
 
 ## Getting Started
 
