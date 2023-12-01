@@ -105,5 +105,53 @@ while not pyray.window_should_close():
     cell["collapsed"] = True
     cell["options"] = [random.choice(cell["options"])]
 
+    next_grid = grid.copy()
+    for j in range(N):
+        for i in range(N):
+            index = i + j * N
+            if grid[index]["collapsed"]:
+                next_grid[index] = grid[index]
+            else:
+                options = [BLANK, UP, RIGHT, DOWN, LEFT]
+
+                # Look up
+                if j > 0:
+                    up = grid[i + (j - 1) * N]
+                    valid_options = []
+                    for option in up["options"]:
+                        valid = RULES[option][2]
+                        valid_options.extend(valid)
+                    options = list(set(options) & set(valid_options))
+
+                # Look right
+                if i < N - 1:
+                    right = grid[i + 1 + j * N]
+                    valid_options = []
+                    for option in right["options"]:
+                        valid = RULES[option][3]
+                        valid_options.extend(valid)
+                    options = list(set(options) & set(valid_options))
+
+                # Look down
+                if j < N - 1:
+                    down = grid[i + (j + 1) * N]
+                    valid_options = []
+                    for option in down["options"]:
+                        valid = RULES[option][0]
+                        valid_options.extend(valid)
+                    options = list(set(options) & set(valid_options))
+
+                # Look left
+                if i > 0:
+                    left = grid[i - 1 + j * N]
+                    valid_options = []
+                    for option in left["options"]:
+                        valid = RULES[option][1]
+                        valid_options.extend(valid)
+                    options = list(set(options) & set(valid_options))
+
+                next_grid[index] = {"options": options, "collapsed": False}
+
+    grid = next_grid
 
 pyray.close_window()
